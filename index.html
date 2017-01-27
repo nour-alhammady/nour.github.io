@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Arab Vision Group</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      <style>
+      @import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4em;
+  color: #F0F0F0;
+  -webkit-text-shadow: 0 2px 1px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.7);
+  -moz-text-shadow: 0 2px 1px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.7);
+  word-spacing: 16px;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #222;
+  text-shadow: 0 0 40px #FFFFFF, 0 0 30px #FFFFFF, 0 0 20px #FFFFFF;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #333;
+  background-size: cover;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: table;
+}
+
+.content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.item {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px;
+}
+
+@media only screen and (min-width: 800px) {
+  h1 {
+    font-size: 6em;
+  }
+  p {
+    font-size: 1.6em;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  h1 {
+    font-size: 2em;
+  }
+  p {
+    font-size: 1.2em;
+  }
+}
+      </style>
+  </head>
+  <body>
+    <div class="container">
+  <div class="wrapper">
+    <div class="content">
+      <div class="item">
+        <!-- Place your content here to have it be centered vertically and horizontally  -->
+        <h1>COMING SOON</h1>
+        <p>This website is under construction.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+      <script>
+      var canvas = document.getElementById('beerCanvas');
+var ctx = canvas.getContext('2d');
+var particles = [];
+var particleCount = 280;
+
+for (var i = 0; i < particleCount; i++) {
+  particles.push(new particle());
+}
+
+function particle() {
+  this.x = Math.random() * canvas.width;
+  this.y = canvas.height + Math.random() * 300;
+  this.speed = 1 + Math.random();
+  this.radius = Math.random() * 3;
+  this.opacity = (Math.random() * 100) / 1000;
+}
+
+function loop() {
+  requestAnimationFrame(loop);
+  draw();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.globalCompositeOperation = 'lighter';
+  for (var i = 0; i < particles.length; i++) {
+    var p = particles[i];
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(255,255,255,' + p.opacity + ')';
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, false);
+    ctx.fill();
+    p.y -= p.speed;
+    if (p.y <= -10)
+      particles[i] = new particle();
+  }
+}
+loop();
+      </script>
+  </body>
+</html>
